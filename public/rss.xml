@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Hacker X Blog]]></title>
+        <description><![CDATA[Modern Web Dev, JavaScript, and Fullstack Insights]]></description>
+        <link>http://github.com/dylang/node-rss</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Fri, 04 Jul 2025 03:23:56 GMT</lastBuildDate>
+        <author><![CDATA[[object Object]]]></author>
+        <copyright><![CDATA[All rights reserved 2025, Hacker X]]></copyright>
+        <language><![CDATA[en]]></language>
+        <item>
+            <title><![CDATA[C++ tutorial in Hindi]]></title>
+            <description><![CDATA[This is a beginner friendly c++ blog]]></description>
+            <guid isPermaLink="false">C++ tutorial in Hindi</guid>
+            <dc:creator><![CDATA[[object Object]]]></dc:creator>
+            <pubDate>Mon, 10 Nov 2025 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Javascript tutorial in Hindi]]></title>
+            <description><![CDATA[This is a javascript tutorial in hindi]]></description>
+            <guid isPermaLink="false">Javascript tutorial in Hindi</guid>
+            <dc:creator><![CDATA[[object Object]]]></dc:creator>
+            <pubDate>Invalid Date</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Python tutorial in Hindi]]></title>
+            <description><![CDATA[This is a beginner friendly python blog]]></description>
+            <guid isPermaLink="false">Python tutorial in Hindi</guid>
+            <dc:creator><![CDATA[[object Object]]]></dc:creator>
+            <pubDate>Invalid Date</pubDate>
+        </item>
+    </channel>
+</rss>

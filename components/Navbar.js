@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button'; // Adjust path to your Button component
 import { Menu } from 'lucide-react';
@@ -11,17 +12,21 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+
+
 import LoadingBar from 'react-top-loading-bar';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-
+import { useSession, signOut } from 'next-auth/react';
 
 export default function Header() {
-
     const pathname = usePathname();
     const [progress, setProgress] = useState(0);
+    const { data: session } = useSession();
 
     useEffect(() => {
+        console.log(session);
+
         setProgress(30); // Reset progress when pathname changes
         const timer2 = setTimeout(() => {
             setProgress(60);
@@ -50,10 +55,35 @@ export default function Header() {
                     <li ><Link href={'/blog'}>Blog</Link></li>
                     <li ><Link href={'/about'}>About</Link></li>
                     <li>
-                        <Button className="h-8" variant="outline">Login</Button>
-                    </li>
-                    <li>
-                        <Button className="h-8" variant="outline">Signup</Button>
+                        {
+                            session ? (
+                                <div className='flex justify-center items-center gap-2'>
+                                    <div>
+                                        <Image
+                                            src={session.user.image || '/user.png'}
+                                            alt="User Avatar"
+                                            className="w-8 h-8 rounded-full"
+                                            width={32}
+                                            height={32}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Image
+                                            src={'/logout.png'}
+                                            alt="logout"
+                                            className="w-8 h-8 rounded-full cursor-pointer"
+                                            width={32}
+                                            height={32}
+                                            onClick={() => signOut({ redirect: false })}
+                                        />
+                                    </div>
+                                </div>
+                            )
+                                : <Button className="h-8" variant="outline">
+                                    <Link href="/login">Login</Link>
+                                </Button>
+                        }
+
                     </li>
                     <li>
                         <ModeToggle />
@@ -66,7 +96,7 @@ export default function Header() {
                             <SheetTrigger>
                                 <Menu className="w-6 h-6 cursor-pointer" />
                             </SheetTrigger>
-                            <ModeToggle className="cursor-pointer"/>
+                            <ModeToggle className="cursor-pointer" />
                         </div>
                         <SheetContent className="w-full">
                             <SheetHeader>
@@ -78,11 +108,38 @@ export default function Header() {
                                             <li>Blog</li>
                                             <li>About</li>
                                             <li>
-                                                <Button className="w-full" variant="outline">Login</Button>
+                                                {
+                                                    session ? (
+                                                        <div className='space-y-2'>
+                                                            <div className='flex justify-center items-center gap-2'>
+                                                                <Image
+                                                                    src={session.user.image || '/user.png'}
+                                                                    alt="User Avatar"
+                                                                    className="w-8 h-8 rounded-full"
+                                                                    width={32}
+                                                                    height={32}
+                                                                />
+                                                                <span>{session.user.name}</span>
+                                                            </div>
+                                                            <div>
+                                                                <Image
+                                                                    src={'/logout.png'}
+                                                                    alt="logout"
+                                                                    className="w-8 h-8 rounded-full cursor-pointer"
+                                                                    width={32}
+                                                                    height={32}
+                                                                    onClick={() => signOut({ redirect: false })}
+                                                                />
+                                                            </div>
+
+                                                        </div>
+                                                    )
+                                                        : <Button className="h-8" variant="outline">
+                                                            <Link href="/login">Login</Link>
+                                                        </Button>
+                                                }
                                             </li>
-                                            <li>
-                                                <Button className="w-full" variant="outline">Signup</Button>
-                                            </li>
+
                                         </ul>
                                     </div>
                                 </SheetDescription>
